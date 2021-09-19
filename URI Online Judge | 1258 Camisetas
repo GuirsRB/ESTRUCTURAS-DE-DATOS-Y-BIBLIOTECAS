@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Camisa {
+    string color;
+    string talla;
+    string nombre;
+};
+
+bool comparacion(Camisa a, Camisa b) {
+    bool respuesta;
+    if(a.color == b.color) {
+        if(a.talla == b.talla) {
+            respuesta = a.nombre < b.nombre;
+        } else {
+            respuesta =  a.talla > b.talla;
+        }
+    } else {
+        respuesta =  a.color < b.color;
+    }
+    return respuesta;
+}
+
+int main() {
+    int casos;
+    bool espacio = false;
+    while(cin>>casos && casos!=0 && casos <= 60) {
+        Camisa arreglo[casos];
+        cin.get();
+        for(int i=0; i<casos; i++) {
+            getline(cin, arreglo[i].nombre); // nombre
+            cin>>arreglo[i].color>>arreglo[i].talla; // color y talla
+            cin.get();
+        }
+        stable_sort(arreglo, arreglo + casos, comparacion);
+        if (espacio){
+            cout << "\n";
+        }
+        espacio = true;
+        for(int i=0; i<casos; i++) {
+            cout << arreglo[i].color << " " << arreglo[i].talla << " " << arreglo[i].nombre << "\n";
+        }
+    }
+    return 0;
+}
