@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int rocas, regalo;
+
+int actual_es(int a_, int b_) {
+    if ((0 < a_ + b_) && (a_ + b_ <= rocas)) {
+        a_ = a_ + b_;
+    } else {
+        a_ = a_ - b_;
+    }
+    return a_;
+}
+
+int  brinco_a(int _i, int _actual) {
+    int brinco = 2 * _i - 1;
+    if (_actual < regalo) {
+        _actual = actual_es(_actual, brinco);
+    } else {
+        _actual = actual_es(_actual, -brinco);
+    }
+    return _actual;
+}
+
+void comprobar(int i_, int actual_) {
+    bool condicion = true;
+    while (condicion) {
+        actual_ = brinco_a(i_, actual_);
+        i_ += 1;
+        if ( (0 < actual_) && (actual_ <= rocas)) {
+            if (actual_ == regalo) {
+                cout<< "Let me try!\n";
+                condicion = false;
+
+            } else {
+                continue;
+            }
+        } else {
+            cout << "Don't make fun of me!\n";
+            condicion = false;
+        }
+    }
+}
+
+int main() {
+    int i, actual;
+    while(cin>>rocas>>regalo && rocas!=0 && regalo!=0) {
+        if ( (2 <= rocas)&& (rocas <= 1e6) && (rocas >= regalo) && (regalo >= 1)) {
+            if(regalo>34) {
+                    cout<< "Let me try!\n";
+            } else {
+                i = 1;
+                actual = 0;
+                comprobar(i, actual);
+            }
+
+        } else {
+            cout<< "Don't make fun of me!\n" ;
+        }
+    }
+    return 0;
+}
