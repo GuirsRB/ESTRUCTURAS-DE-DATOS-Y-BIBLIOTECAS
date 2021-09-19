@@ -1,0 +1,17 @@
+if __name__ == '__main__':
+    casos = int(input())
+    numeroPar = []
+    numeroImpar = []
+    while casos != 0:
+        numero = int(input())
+        if numero % 2 == 0:
+            numeroPar.append(numero)
+        else:
+            numeroImpar.append(numero)
+        casos -= 1
+    numeroPar.sort()
+    numeroImpar.sort(reverse=True)
+    for i in numeroPar:
+        print(i)
+    for i in numeroImpar:
+        print(i)
